@@ -27,6 +27,6 @@ defmodule Tablemaker.Mixfile do
   #
   # Type `mix help deps` for more examples and options
   defp deps do
-    []
+    [ {:ex_spec, "~> 0.3.0", only: :test}, {:white_bread, git: "https://github.com/meadsteve/white-bread.git"} ]
   end
 end
