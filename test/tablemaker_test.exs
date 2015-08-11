@@ -8,8 +8,8 @@ defmodule TablemakerTest do
 
   describe "running the command tablemaker" do
       it "generates a multilne 10x10 multiplication grid of the first 10 prime numbers" do
-          {name,_} = System.cmd("tablemaker", [])
-          assert name == read_test_data
+          {tabledata,_} = System.cmd("tablemaker", [])
+          assert tabledata == read_test_data
       end
   end
 
