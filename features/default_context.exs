@@ -14,21 +14,19 @@ feature_starting_state fn  ->
 end
 
 
-
-
 defmodule WhiteBread.Tablemaker.RunContext do
   use WhiteBread.Context
 
   given_ ~r/^that I have a tablemaker executable$/, fn _state ->
     {name,_} = System.cmd("which", ["tablemaker"])
-    assert name ="./tablemaker\n" 
+    assert name = "./tablemaker\n" 
   end
 
   
 
 end
 
-defmodule WhiteBread.Tablemaker.DefaultContext.Testdataf do
+defmodule WhiteBread.Tablemaker.DefaultContext.Testdata do
   import WhiteBread.Helpers
 
  
