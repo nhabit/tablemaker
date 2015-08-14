@@ -17,12 +17,16 @@ end
 defmodule WhiteBread.Tablemaker.RunContext do
   use WhiteBread.Context
 
-  given_ ~r/^that I have a tablemaker executable$/, fn _state ->
-    {name,_} = System.cmd("which", ["tablemaker"])
-    assert name = "./tablemaker\n" 
-  end
+  #given_ ~r/that I have a tablemaker executable$/, fn _state ->
+  #  {name,_} = System.cmd("which", ["tablemaker"])
+  #  assert name = "./tablemaker\n" 
+  #end
 
-  
+    
+    given_ ~r/^that I have a tablemaker executable$/, fn state ->
+        IO.inspect state
+        {:ok, state}
+    end  
 
 end
 

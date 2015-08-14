@@ -17,7 +17,7 @@ defmodule TablemakerTest do
     describe "create_data" do
         it "returns a list of the first 10 prime numbers" do
             prime_list = Tablemaker.create_data
-            assert prime_list == [2,3,5,7,11,13,17,19.23,29]
+            assert prime_list == [2,3,5,7,11,13,17,19,23,29]
         end
     end
 

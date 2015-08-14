@@ -14,7 +14,7 @@ defmodule Tablemaker do
 
     def create_data() do 
         count = 10
-        PrimeMaker.sieve_from(10)
+        Primemaker.sieve_for(count)
     end
 
 
