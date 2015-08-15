@@ -40,5 +40,12 @@ defmodule TablemakerTest do
 
     end
 
+    describe "widest_number" do
+        it "finds and returns the length of the number whose string length is largest" do
+            number_list = [1,45,9000,23,58,444]
+            widest = Tablemaker.widest_number(number_list)
+            assert widest == 4
+        end
+    end
 
 end
