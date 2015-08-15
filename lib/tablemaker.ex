@@ -6,9 +6,8 @@ defmodule Tablemaker do
     end
 
     def print do
-        create_data 
-        #|>
-        #build_table |>
+        create_data |>
+        build_tabular_data_structure
         # print_table
     end
 
@@ -17,5 +16,7 @@ defmodule Tablemaker do
         Primemaker.sieve_for(count)
     end
 
-
+    def build_tabular_data_structure(number_list) do
+        Enum.map(number_list, fn(top) -> Enum.map(number_list, fn(side) -> top * side end ) end )
+    end
 end
