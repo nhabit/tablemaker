@@ -17,7 +17,7 @@ defmodule Tablemaker do
     end
 
     def build_tabular_data_structure(number_list) do
-        Enum.map(number_list, fn(top) -> Enum.map(number_list, fn(side) -> top * side end ) end )
+        Enum.map(number_list, fn(top) -> Enum.map(number_list, fn(side) -> Integer.to_string(top * side) end ) end ) 
     end
 
     def print_table(number_list,data_structure) do
@@ -31,19 +31,17 @@ defmodule Tablemaker do
     end
 
     
-    def widest_number(number_list) do
-        Enum.map(number_list, fn(x) -> Integer.to_string(x) end) 
-        |> Enum.max_by( fn(x) -> String.length(x) end) 
-        |> String.length
+    def widest_number(list) do
+        Enum.max_by( list, fn(x) -> String.length(x) end) |> String.length
     end
 
     defp print_table_header( number_list, number_width) do
         "|       |  " <> Enum.map_join( number_list, "|  ", fn _ -> "~#{number_width}s  " end) <> "|~n" |> :io.format(number_list)
     end
     
-    defp print_table_border_line(number_list, number_width, pad) do   
-        cell_count = length(number_list) + 1
-        cell_width = number_width + pad 
+    defp print_table_border_line(list, max_element_width, padding) do   
+        cell_count = length(list) + 1
+        cell_width = max_element_width + padding 
         cell_line = String.duplicate("-", cell_width)
         IO.puts "-" <> Enum.join((List.duplicate(cell_line, cell_count)), "-") <> "-"
     end
@@ -52,8 +50,7 @@ defmodule Tablemaker do
         cell_count = length([head|ds_head])
         top_line = String.duplicate "-", (number_width + pad)
         IO.puts horizontal_separator(top_line, cell_count)
-        ds_string_list = Enum.map(ds_head, fn(x) -> Integer.to_string(x) end) 
-        "|  " <> Enum.map_join( [head|ds_string_list], "|  ", fn _ -> "~#{number_width}s  " end) <> "|~n" |> :io.format([head|ds_string_list])
+        "|  " <> Enum.map_join( [head|ds_head], "|  ", fn _ -> "~#{number_width}s  " end) <> "|~n" |> :io.format([head|ds_head])
         print_body(remainder,ds_remainder, number_width, pad)
     end
 
