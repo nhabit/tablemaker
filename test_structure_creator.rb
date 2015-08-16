@@ -6,7 +6,7 @@ class Bing
         ( ten_primes ).each do | top |
             row = "["
             ( ten_primes ).each do | side |
-                row = row << "#{ top * side},"
+                row = row << "\"#{ top * side}\","
             end
             row = row << "],"
             puts row
