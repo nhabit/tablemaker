@@ -1,6 +1,7 @@
 defmodule TablemakerTest do
 
     use ExSpec, async: true
+    import ExUnit.CaptureIO
 
     def read_test_data do
         {_,test_data} = File.read('test/test_data')
@@ -9,7 +10,8 @@ defmodule TablemakerTest do
 
     describe "print" do
         it "generates and outputs a multi-line multiplication grid of the first 10 prime numbers" do
-            tabledata = Tablemaker.print
+            tabledata = capture_io fn -> Tablemaker.print end
+            # IO.puts tabledata
             assert tabledata == read_test_data
         end
     end
@@ -42,6 +44,14 @@ defmodule TablemakerTest do
 
     describe "widest_number" do
         it "finds and returns the length of the number whose string length is largest" do
+            number_list = [1,45,9000,23,58,444]
+            widest = Tablemaker.widest_number(number_list)
+            assert widest == 4
+        end
+    end
+
+    describe "print_table" do
+        it "outputs a multidimensional data structure as an ascii tabledata" do
             number_list = [1,45,9000,23,58,444]
             widest = Tablemaker.widest_number(number_list)
             assert widest == 4
