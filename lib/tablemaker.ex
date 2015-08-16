@@ -38,8 +38,7 @@ defmodule Tablemaker do
     end
 
     defp print_table_header( number_list, number_width) do
-        blank = "|       |  "
-        blank <> Enum.map_join( number_list, "|  ", fn _ -> "~#{number_width}s  " end) <> "|~n" |> :io.format(number_list)
+        "|       |  " <> Enum.map_join( number_list, "|  ", fn _ -> "~#{number_width}s  " end) <> "|~n" |> :io.format(number_list)
     end
     
     defp print_table_border_line(number_list, number_width, pad) do   
@@ -51,8 +50,7 @@ defmodule Tablemaker do
 
     defp print_body([head|remainder],[ds_head|ds_remainder], number_width, pad) do
         cell_count = length([head|ds_head])
-        cell_width = number_width + pad
-        top_line = String.duplicate "-", cell_width
+        top_line = String.duplicate "-", (number_width + pad)
         IO.puts horizontal_separator(top_line, cell_count)
         ds_string_list = Enum.map(ds_head, fn(x) -> Integer.to_string(x) end) 
         "|  " <> Enum.map_join( [head|ds_string_list], "|  ", fn _ -> "~#{number_width}s  " end) <> "|~n" |> :io.format([head|ds_string_list])
@@ -62,6 +60,7 @@ defmodule Tablemaker do
     defp horizontal_separator(line,count) do
         "|" <> Enum.join((List.duplicate(line, count)), "+") <> "|"
     end
+
 
     defp print_body([], [], _, _) do end
 
