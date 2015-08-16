@@ -44,7 +44,7 @@ defmodule Tablemaker do
     defp print_table_border_line(number_list, number_width, pad) do   
         cell_count = length(number_list) + 1
         cell_width = number_width + pad 
-        cell_line = String.duplicate "-", cell_width
+        cell_line = String.duplicate("-", cell_width)
         IO.puts "-" <> Enum.join((List.duplicate(cell_line, cell_count)), "-") <> "-"
     end
 
