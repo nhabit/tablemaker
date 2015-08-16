@@ -50,14 +50,17 @@ defmodule Tablemaker do
     end
 
     defp print_body([head|remainder],[ds_head|ds_remainder], number_width, pad) do
-        table_cells_per_row = length([head|ds_head])
+        cell_count = length([head|ds_head])
         cell_width = number_width + pad
-        cell_line = String.duplicate "-", cell_width
-        horizontal_separator = "|" <> Enum.join((List.duplicate(cell_line, table_cells_per_row)), "+") <> "|"
-        IO.puts horizontal_separator
+        top_line = String.duplicate "-", cell_width
+        IO.puts horizontal_separator(top_line, cell_count)
         ds_string_list = Enum.map(ds_head, fn(x) -> Integer.to_string(x) end) 
         "|  " <> Enum.map_join( [head|ds_string_list], "|  ", fn _ -> "~#{number_width}s  " end) <> "|~n" |> :io.format([head|ds_string_list])
         print_body(remainder,ds_remainder, number_width, pad)
+    end
+
+    defp horizontal_separator(line,count) do
+        "|" <> Enum.join((List.duplicate(line, count)), "+") <> "|"
     end
 
     defp print_body([], [], _, _) do end
