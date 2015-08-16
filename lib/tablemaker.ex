@@ -42,10 +42,10 @@ defmodule Tablemaker do
     end
     
     defp print_table_border_line(number_list, number_width, pad) do   
-        table_cells_per_row = length(number_list) + 1
+        cell_count = length(number_list) + 1
         cell_width = number_width + pad 
         cell_line = String.duplicate "-", cell_width
-        IO.puts "-" <> Enum.join((List.duplicate(cell_line, table_cells_per_row)), "-") <> "-"
+        IO.puts "-" <> Enum.join((List.duplicate(cell_line, cell_count)), "-") <> "-"
     end
 
     defp print_body([head|remainder],[ds_head|ds_remainder], number_width, pad) do
