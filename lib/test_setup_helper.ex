@@ -1,7 +1,7 @@
 defmodule TestSetupHelper do 
 
-    def read_test_data do
-        {_,test_data} = File.read('test/test_data')
+    def read_test_data(test_file \\ 'test/test_data') do
+        {_,test_data} = File.read(test_file)
         test_data
     end
     

@@ -5,7 +5,7 @@ defmodule ConsolePrinter do
         number_width =  Enum.map(data_structure, &ConsolePrinter.widest_number(&1)) |> Enum.max 
         number_list = Enum.map(number_list, fn(x) -> Integer.to_string(x) end) 
         print_table_border_line(number_list,(number_width + pad))
-        print_table_header(number_list,number_width)
+        print_table_header(number_list,number_width, pad)
         print_body(number_list, data_structure, number_width, pad)
         print_table_border_line(number_list, (number_width +  pad))
     end
@@ -15,8 +15,9 @@ defmodule ConsolePrinter do
         Enum.max_by( list, fn(x) -> String.length(x) end) |> String.length
     end
 
-    defp print_table_header( number_list, number_width) do
-        "|       |  " <> Enum.map_join( number_list, "|  ", fn _ -> "~#{number_width}s  " end) <> "|~n" |> :io.format(number_list)
+    defp print_table_header( number_list, number_width, pad) do
+        blank_cell = "|" <> String.duplicate(" ", (number_width + pad)) <> "|  "
+        blank_cell <> Enum.map_join( number_list, "|  ", fn _ -> "~#{number_width}s  " end) <> "|~n" |> :io.format(number_list)
     end
     
     defp print_table_border_line(list, cell_width ) do   
