@@ -1,5 +1,4 @@
-defmodule TablemakerTest do
-
+defmodule ConsolePrinterTest do
     use ExSpec, async: true
     import ExUnit.CaptureIO
 
@@ -7,7 +6,7 @@ defmodule TablemakerTest do
         {_,test_data} = File.read('test/test_data')
         test_data
     end
-
+    
     def ten_prime_data_structure do
         [[4,6,10,14,22,26,34,38,46,58,],
         [6,9,15,21,33,39,51,57,69,87,],
@@ -37,28 +36,21 @@ defmodule TablemakerTest do
     def ten_prime_list do
         [2,3,5,7,11,13,17,19,23,29]
     end
-    
-    describe "print" do
-        it "generates and outputs a multi-line multiplication grid of the first 10 prime numbers" do
-            tabledata = capture_io fn -> Tablemaker.print end
-            assert tabledata == read_test_data
+    describe "widest_number" do
+        it "finds and returns the length of the number whose string length is largest" do
+            number_list = ["1","45","9000","23","58","444"]
+            widest = ConsolePrinter.widest_number(number_list)
+            assert widest == 4
         end
     end
 
-    describe "create_data" do
-        it "returns a list of the first 10 prime numbers" do
-            prime_list = Tablemaker.create_data
-            assert prime_list == [2,3,5,7,11,13,17,19,23,29]
+    describe "print_table" do
+        it "outputs a multidimensional data structure as an ascii tabledata" do
+            prime_list = ten_prime_list()
+            data_structure = ten_prime_data_structure_of_strings()
+            table =  capture_io fn -> ConsolePrinter.print_table(prime_list,data_structure) end
+            assert table == read_test_data
         end
     end
-
-    describe "build_tabular_data_structure" do
-        it "creates a multi-dimensional data structure containing calculated data from a list of numbers" do
-            table_structure = ten_prime_list() |> Tablemaker.build_tabular_data_structure()
-            assert table_structure == ten_prime_data_structure_of_strings()
-        end
-
-    end
-
 
 end
