@@ -11,9 +11,9 @@ defmodule Primemaker do
 
     def sieve_primes([] , primes_found), do: primes_found
 
-    def sieve_primes([next_possible_prime | remainder ], primes_found ) do
-        remaining_sieve = Enum.reject(remainder, &(rem( &1,  next_possible_prime) == 0))
-        sieve_primes(remaining_sieve, [next_possible_prime | primes_found])
+    def sieve_primes([next_prime | remainder ], primes_found ) do
+        remaining_sieve = Enum.reject(remainder, &(rem( &1,  next_prime) == 0))
+        sieve_primes(remaining_sieve, [next_prime | primes_found])
     end
 
 end
