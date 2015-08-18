@@ -2,6 +2,14 @@ defmodule PrimemakerTest do
 
     use ExSpec, async: true
 
+    describe "find" do
+        it "provides a convenience method alias for sieve_for and adds a consistent why of 'finding' irrespecitve of the type" do
+            primes = Primemaker.find(10)
+            assert primes == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29] 
+        end
+    end
+
+
     describe "sieve_for 'n'" do
         it "generates 'n' prime numbers" do
             primes = Primemaker.sieve_for(10)
