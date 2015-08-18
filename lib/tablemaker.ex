@@ -1,7 +1,7 @@
 defmodule Tablemaker do
 
     def main(args) do
-      args |> parse_args |> print
+      args |> parse_args |> run
 
     end
 
@@ -12,13 +12,13 @@ defmodule Tablemaker do
         options
     end
 
-    def print([]) do
+    def run([]) do
         number_list = create_data()
         data_structure = build_tabular_data_structure number_list
         print_table_for(:console, number_list, data_structure)
     end
 
-    def print([count: number]) do
+    def run([count: number]) do
         count = String.to_integer(number)
         number_list = create_data(count)
         data_structure = build_tabular_data_structure number_list
