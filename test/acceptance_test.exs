@@ -20,5 +20,12 @@ defmodule AcceptanceTest do
             end
         end
 
+        describe "running the command with the --type option set to fib" do
+            it "generates a multi-line 10x10 multiplication grid of the first 10 fibonacci numbers" do
+                app_name = "/Users/andy/projects/elixir-stuff/tablemaker/tablemaker"
+                {tabledata,_} = System.cmd(app_name, ["--type", "fib"])
+                assert tabledata == TestSetupHelper.read_test_data('test/test_data_10_fib')
+            end
+        end
     end
 end
