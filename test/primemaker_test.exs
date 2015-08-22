@@ -17,6 +17,15 @@ defmodule PrimemakerTest do
         end
     end
   
+    context "When n is less than 6" do
+        describe "sieve_for n" do
+            it "generates the correct number of primes " do
+                primes = Primemaker.sieve_for(5)
+                assert primes == [2,3,5,7,11]
+            end
+        end
+    end
+    
     describe "make_bounds_for 'n'" do
         it "generates the largest number required to create the sieve" do
             assert  31 == Primemaker.make_bounds_for(10)

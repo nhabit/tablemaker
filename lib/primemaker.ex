@@ -1,6 +1,10 @@
 defmodule Primemaker do
 
-    def  sieve_for(prime_count) do
+    def sieve_for(prime_count) when prime_count < 6 do
+        Enum.take( [2,3,5,7,11], prime_count)
+    end
+
+    def  sieve_for(prime_count) when prime_count > 5 do
         boundry = make_bounds_for(prime_count)
         Enum.to_list(2..boundry) |> sieve_primes([]) |>  Enum.reverse |> Enum.take(prime_count) 
     end
