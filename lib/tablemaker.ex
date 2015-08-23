@@ -42,21 +42,6 @@ defmodule Tablemaker do
         Fibonaccimaker.find(count)
     end
 
-    def create_data("prime") do 
-        Primemaker.sieve_for(10)
-    end
-
-    def create_data("fib") do
-        Fibonaccimaker.find(10)
-    end
-
-    def create_data(count) do
-        Primemaker.sieve_for(count)
-    end
-    def create_data() do 
-        Primemaker.sieve_for(10)
-    end
-
     def build_tabular_data_structure(number_list) do
         Enum.map(number_list, fn(top) -> Enum.map(number_list, fn(side) -> Integer.to_string(top * side) end ) end ) 
     end
