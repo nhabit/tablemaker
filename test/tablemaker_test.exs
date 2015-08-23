@@ -30,6 +30,22 @@ defmodule TablemakerTest do
     end
 
 
+    context "when given the argment 'fib' " do
+        describe "module_map" do 
+            it "returns Fibonaccimaker when given 'fib'" do
+                assert Fibonaccimaker == Tablemaker.module_map("fib")
+            end
+        end
+    end
+
+    context "when given the argument 'prime' " do
+        describe "module_map" do
+            it "returns Primemaker when given 'prime" do
+                assert Primemaker == Tablemaker.module_map("prime")
+            end
+        end
+    end
+
     describe "build_tabular_data_structure" do
         it "creates a multi-dimensional data structure containing calculated data from a list of numbers" do
             table_structure = TestSetupHelper.ten_prime_list() |> Tablemaker.build_tabular_data_structure()

@@ -19,7 +19,6 @@ defmodule Tablemaker do
             _                               -> :help
         end
 
-#        options
     end
 
 
@@ -34,12 +33,13 @@ defmodule Tablemaker do
         IO.puts "Current options are --count n --type prime/fib"
     end
 
-    def create_data("prime", count) do 
-        Primemaker.sieve_for(count)
+    def create_data(type, count) do 
+        module_map(type).find(count)
     end
 
-    def create_data("fib", count) do
-        Fibonaccimaker.find(count)
+    def module_map(type) do
+        map = %{"prime" => Primemaker, "fib" => Fibonaccimaker}
+        map[type]
     end
 
     def build_tabular_data_structure(number_list) do
