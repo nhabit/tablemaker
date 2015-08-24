@@ -5,7 +5,7 @@ defmodule TablemakerTest do
 
     describe "run" do
         it "generates and outputs a multi-line multiplication grid of the first 10 prime numbers" do
-            tabledata = capture_io fn -> Tablemaker.run([count: "10", type: "prime"]) end
+            tabledata = capture_io fn -> Tablemaker.run([count: 10, type: "prime"]) end
             assert tabledata == TestSetupHelper.read_test_data
         end
     end
