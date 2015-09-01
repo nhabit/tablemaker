@@ -7,14 +7,14 @@ defmodule Tablemaker do
 
     def parse_args(args) do
         options = OptionParser.parse(args,
-            switches: [count: :integer, type: :string, help: :boolean],
+            switches: [count: :integer, type: :string, help: :boolean, single: :boolean],
             aliases: [h: :help]
         )
-         
-        default_args = %{ :count => 10, :type  => "prime" }
+        default_args = %{ :count => 10, :type  => "prime", :single => false }
         case options do
             { [help: :true ], _, _}    -> :help
             { opts, _, _ }       -> Enum.into(opts,default_args)
+
         end
     end
 
@@ -25,11 +25,21 @@ defmodule Tablemaker do
     end
     
     def run(options) do
-        number_list = create_data(options[:type], options[:count] )
+        case options[:single] do
+            true -> run_single(options[:type],options[:count])
+            false -> run_table(options[:type],options[:count])
+        end
+    end
+
+    def run_table(type, count) do
+        number_list = create_data( type, count )
         data_structure = build_tabular_data_structure number_list
         print_table_for(:console, number_list, data_structure)
     end
 
+    def run_single(type,count) do
+        print_number_for(:console, (List.last(create_data(type, count)))) 
+    end
 
 
     def create_data(type, count) do 
@@ -52,5 +62,10 @@ defmodule Tablemaker do
     def print_table_for(device, _, _) do
         IO.puts "I have ZERO idea what #{device} is. sorry!"
     end
+
+    def print_number_for(:console, number) do
+        IO.puts number
+    end
+    
 
 end
