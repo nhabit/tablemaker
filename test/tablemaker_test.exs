@@ -25,10 +25,7 @@ defmodule TablemakerTest do
                 assert fib_list == [0,1,1,2,3,5,8,13,21,34]
             end
         end
-    end
-
-
-    describe "create_data" do
+        
         context "with a type of prime and a count of 10 argument" do
             it "returns a list of the first 10 prime numbers" do
                 fib_list = Tablemaker.create_data("prime", 10)
@@ -44,9 +41,7 @@ defmodule TablemakerTest do
                 assert Fibonaccimaker == Tablemaker.module_map("fib")
             end
         end
-    end
-
-    describe "module_map" do
+    
         context "when given the argument 'prime' " do
             it "returns Primemaker when given 'prime" do
                 assert Primemaker == Tablemaker.module_map("prime")
